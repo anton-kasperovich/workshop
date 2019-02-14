@@ -11,7 +11,7 @@ Because we wanted a simple-enough set of applications that people can play with,
 
 The **goal** of this workshop is to write the CI/CD pipelines for the whole stack, connecting applications together.
 
-## Intial Setup
+## Initial Setup
 
 Before starting, you'll need to [create a new Jenkins X cluster](https://jenkins-x.io/getting-started/create-cluster/). This is well documented in the [Jenkins X Documentation](https://jenkins-x.io/documentation/).
 

@@ -26,15 +26,19 @@ Let's start by importing [Mulder](https://github.com/the-jenkins-x-files/mulder)
 
 This is great, and so far Jenkins X did most of the work - but now it's our turn ;-)
 
-First, let's check if we can use our application. We need to find the [namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) used for the **staging** environment. To do that, we can use the `jx get environments` command. It confirms that we need to use the `jx-staging` namespace.
+First, let's check if we can use our application. We can list the deployed applications in a given environment by running the [jx get applications](https://jenkins-x.io/commands/jx_get_applications/) command:
 
-We need to retrieve the endpoint of our application, and to do that, we'll check the [ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) in the `jx-staging` namespace:
+```
+$ jx get applications -e staging
+```
 
-    ```
-    $ kubectl get ingress -n jx-staging
-    ```
+The endpoint's URL is something like `http://mulder.jx-staging.XXX.nip.io`. If you open this URL in your browser, it should... not work. To debug our issue, we need to find our application's [pods](https://kubernetes.io/docs/concepts/workloads/pods/pod/). In Kubernetes, pods are deployed in [namespaces](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/). So we need to find the namespace used for the **staging** environment. To do that, we can use the [jx get environments](https://jenkins-x.io/commands/jx_get_environments/) command:
 
-The endpoint's host is something like `mulder.jx-staging.XXX.nip.io`. If you open this URL in your browser, it should... not work. To debug our issue, we can start by inspecting the [pods](https://kubernetes.io/docs/concepts/workloads/pods/pod/) in the `jx-staging` namespace:
+```
+$ jx get environments
+```
+
+It confirms that we need to use the `jx-staging` namespace. And if we want to list the pods in the `jx-staging` namespace:
 
 ```
 $ kubectl get pods -n jx-staging

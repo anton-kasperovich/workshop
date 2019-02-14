@@ -1,30 +1,4 @@
-# Extra Steps
-
-Let's finish with a few (optional) extra steps:
-
-- [Kubernetes Healthcheck](#kubernetes-healthcheck)
-- [Code change](#code-change)
-- [Production Deployment](#production-deployment)
-
-## Kubernetes Healthcheck
-
-Kubernetes can check the health of your application, and either restart a failing pod or "disable" it, using [liveness and readiness probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/).
-
-[Mulder's README](https://github.com/the-jenkins-x-files/mulder/blob/master/README.md) documents a `/healthz` endpoint, that can be used to retrieve the health of the application, and the connection to Redis. So, let's update our deployment to use this new endpoint, instead of the default `/` one. If you open the `charts/mulder/templates/deployment.yaml` file, you can see that it's using the `probePath` value. So let's update our `charts/mulder/values.yaml` file to set the new value for `probePath`:
-
-```
-probePath: /healthz
-```
-
-And create a new Git branch, commit, push, open a PR, make sure it works, and merge the PR.
-
-## Code change
-
-This time, let's change some of the code, and see what happens. For example, in the `main.go` file, you can remove all the existing lines in the `quotes` array, and add only 1 or 2 of your own quotes.
-
-As usual, branch/commit/push/PR and make sure it works.
-
-## Production Deployment
+# Production Deployment
 
 You might have noticed that so far we only deployed to the **staging** environment. And what about the **production** environment?
 
@@ -48,5 +22,3 @@ So our current pipeline is doing **Continuous Delivery**, not **Continuous Deplo
 
 - update the production environment's configuration, using the `jx edit environment production` command, to switch to `Auto` promotion - that will apply to all applications.
 - update the `Jenkinsfile` of an application to run the `jx promote --env production` command right after the `jx promote --all-auto` command - this will only apply to that single application.
-
-You are now ready to move to [Scully](../scully/README.md)!
