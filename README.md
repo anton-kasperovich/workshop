@@ -33,3 +33,5 @@ You need at least to start somewhere. If you plan to do both, you should start w
 
 - Start here for the [Mulder Workshop](mulder/README.md)
 - Or here for the [Scully Workshop](scully/README.md)
+
+And if you had time to finish everything, you can do the [Integration Workshop](integration/README.md).
