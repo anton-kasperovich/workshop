@@ -64,7 +64,8 @@ Let's update our Kubernetes [deployment](https://kubernetes.io/docs/concepts/wor
 
 If you look at the [Container's API reference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.13/#container-v1-core), you can see that it has an optional `args` field, whose value is a string array. We will just need to add 2 arguments:
 - the flag name: `-redis-addr`
-- and its value: `{{ .Release.Name }}-redis-master:6379`. `{{ .Release.Name }}` is a special Helm variable that will be replaced by the name of the release - see [Helm's list of predefined values](https://docs.helm.sh/developing_charts/#predefined-values).
+- and its value: `{{ .Release.Name }}-redis-master:6379`
+  - `{{ .Release.Name }}` is a special Helm variable that will be replaced by the name of the release - see [Helm's list of predefined values](https://docs.helm.sh/developing_charts/#predefined-values).
 
 You can find the whole file at [deployment.yaml](deployment.yaml).
 
