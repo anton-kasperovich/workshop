@@ -74,7 +74,7 @@ dir('/home/jenkins/go/src/github.com/XXX/mulder/charts/preview') {
 }
 ```
 
-Let's commit and push again, and enjoy the green Jenkins build! It's time to merge your PR.
+Let's commit and push again, and enjoy the green Jenkins build! It's time to merge your PR. And to update your local `master` branch.
 
 This time we have a fully functional CI/CD pipeline with a safety net, so we can start developing new features with confidence!
 

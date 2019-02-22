@@ -72,6 +72,8 @@ So, back to our application. If you try to visit its URL again, and click on the
 
 Well, now that everything's working, it's time to merge the PR! This will automatically trigger a new PR in your "staging environment" git repository, which in turn will trigger a new Jenkins build - to deploy your new release to the staging environment.
 
+While the Jenkins build runs, you can checkout the `master` branch locally, and update it. So that you are ready for the next steps ;-)
+
 Once its done, you can check the `jx-staging` Helm release to see its changes - using `helm history jx-staging` for example, or even `helm diff`. And if you open <http://scully.jx-staging.YOUR_DOMAIN/> in your browser, you should have a working Scully UI, that will give you random Mulder quotes!
 
 One more comment on the PR that was merged. Closing or merging a PR will automatically delete the associated Preview Environment, but not in real time. There is a separate process, that runs at regular interval, and check for Preview Environments that should be deleted. It's called `jenkins-x-gcpreviews`, and is setup as a Kubernetes [CronJob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/). You can see it by running `kubectl get cronjobs` - and if you run `kubectl get jobs` you will see its last runs. So don't worry if your preview is still there even if the PR has been merged: it may take some time for the job to run and garbage-collect it.

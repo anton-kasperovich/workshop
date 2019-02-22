@@ -28,6 +28,6 @@ container('nodejs') {
 ```
 
 Let's create a new Git branch, commit our changes, and push. Then open a new Pull Request on Github, and... let Jenkins work ;-)
-Commit your changes, push them, and enjoy the green Jenkins build! It's time to merge your PR.
+Enjoy the green Jenkins build! It's time to merge your PR. And to update your local `master` branch.
 
 This time we have a fully functional CI/CD pipeline with a safety net, so we can start developing new features with confidence! And [deploy to production](prod-deploy.md).

@@ -81,6 +81,8 @@ So, back to our application. If you try to visit its URL again, and click on the
 
 Well, now that everything's working, it's time to merge the PR! This will automatically trigger a new PR in your "staging environment" git repository, which in turn will trigger a new Jenkins build - to deploy your new release to the staging environment.
 
+While the Jenkins build runs, you can checkout the `master` branch locally, and update it. So that you are ready for the next steps ;-)
+
 But... the deployment to the staging environment never finishes. If you check the Helm releases - with `helm list -a` - you can see that the latest revision of the `jx-staging` release is in `PENDING_UPGRADE` status for a while, and then it changes to the `FAILED` status. In the output of the Jenkins build that did the deployment, you can see the following error:
 
 > Error: UPGRADE FAILED: timed out waiting for the condition
@@ -116,6 +118,6 @@ This means that by default, the Mulder dependency won't be used.
 
 And the last step is to enable the dependency for the previews. We can do that in the `charts/preview/values.yaml`, and add the same lines, except with the `true` value. This means that when deploying the preview chart, we will also deploy the mulder chart.
 
-Create a new branch for your change, commit, push and create a new Pull Request. Make sure that the new Preview Environment has been created with everything: Scully, Mulder and Redis. And then merge the PR - this will trigger a new deployment to the staging environment, which should be successful this time. Open <http://scully.jx-staging.YOUR_DOMAIN/> in your browser, you should have a working Scully UI, that will give you random Mulder quotes!
+Create a new branch for your change, commit, push and create a new Pull Request. Make sure that the new Preview Environment has been created with everything: Scully, Mulder and Redis. And then merge the PR, and update your local `master` branch - this will trigger a new deployment to the staging environment, which should be successful this time. Open <http://scully.jx-staging.YOUR_DOMAIN/> in your browser, you should have a working Scully UI, that will give you random Mulder quotes!
 
 So, everything done? Well, not yet. We have a functional CI/CD pipeline for our application, but so far we had to do manual testing. What about [running the integration tests automatically](run-tests.md)?

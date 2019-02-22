@@ -16,7 +16,7 @@ Kubernetes can check the health of your application, and either restart a failin
 probePath: /healthz
 ```
 
-And create a new Git branch, commit, push, open a PR, make sure it works, and merge the PR.
+And create a new Git branch, commit, push, open a PR, make sure it works, merge the PR, and update your local `master`.
 
 ## Code change
 
